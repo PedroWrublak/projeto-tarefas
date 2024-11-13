@@ -1,8 +1,32 @@
+const inputTarefa = document.querySelector('.novaTarefa');
+const btnTarefa = document.querySelector('.btn-tarefa');
+const tarefas = document.querySelector('.tarefasText');
 
-function adicionar() {
-    const txt = document.querySelector('.tarefasText');
-    const tarefas = document.querySelector('.text')
-
-    txt.innerHTML += tarefas.value;
-
+function criaLi() {
+    const li = document.createElement('li');
+    return li;
 }
+
+inputTarefa.addEventListener('keypress', function(e) {
+    if (e.keyCode === 13) {
+        if (!inputTarefa.value) return;
+        criaTarefa(inputTarefa.value);
+    }
+});
+
+function limpaInput() {
+    inputTarefa.value = '';
+    inputTarefa.focus();
+}
+
+function criaTarefa(textoInput) {
+    const li = criaLi();
+    li.innerHTML = textoInput;
+    tarefas.appendChild(li);
+    limpaInput();
+}
+
+btnTarefa.addEventListener('click', function() {
+    if (!inputTarefa.value) return;
+    criaTarefa(inputTarefa.value);
+});
